@@ -76,3 +76,9 @@ scrape_configs:
   - job_name: 'wormcells-viz_packer2019_submissions'
     static_configs:
     - targets: ['packer2019.textpressolab.com:9117']
+
+  - job_name: 'wormicloud_submissions'
+    static_configs:
+    - targets: ['wormicloud.textpressolab.com:9115']
+
+
