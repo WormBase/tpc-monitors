@@ -48,11 +48,31 @@ scrape_configs:
     static_configs:
     - targets: ['grok_exporter_afp_digests:9148']
 
-  - job_name: 'cengen-de'
+  - job_name: 'wormicloud'
     static_configs:
-    - targets: ['cengen-de.textpressolab.com:9113']
+    - targets: ['wormicloud.textpressolab.com:9113']
 
-  - job_name: 'cengen-de-custom'
+
+  - job_name: 'scdefg_nginx'
     static_configs:
-    - targets: ['cengen-de.textpressolab.com:9115']
+    - targets: ['scdefg.textpressolab.com:9113']
 
+  - job_name: 'scdefg_submissions'
+    static_configs:
+    - targets: ['scdefg.textpressolab.com:9115']
+
+  - job_name: 'wormcells-viz_nginx'
+    static_configs:
+    - targets: ['wormcells-viz.textpressolab.com:9113']
+
+  - job_name: 'wormcells-viz_cengen_submissions'
+    static_configs:
+    - targets: ['cengen.textpressolab.com:9115']
+
+  - job_name: 'wormcells-viz_bendavid2021_submissions'
+    static_configs:
+    - targets: ['bendavid2021.textpressolab.com:9116']
+
+  - job_name: 'wormcells-viz_packer2019_submissions'
+    static_configs:
+    - targets: ['packer2019.textpressolab.com:9117']
