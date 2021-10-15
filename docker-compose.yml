@@ -1,9 +1,10 @@
+version: '3'
 services:
   prometheus:
     container_name: prometheus
     image: prom/prometheus
-    ports: 
-      - "9090:9090"
+    #ports:
+    #  - "9090:9090"
     volumes:
       - /data/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - /data/prometheus/rules.yml:/etc/prometheus/rules.yml
@@ -12,85 +13,96 @@ services:
       - "alertmanager"
     networks:
       - prometheus_network
+    hostname: prometheus
+    
 
   grok_exporter_email_extr:
     container_name: grok_exporter_email_extr
     image: grok_exporter
     build: /data/prometheus/grok_exporter/
-    ports:
-      - "9144:9144"
+    #ports:
+    #  - "9144:9144"
     volumes:
       - /data/prometheus/grok_exporter/config_email_extr.yml:/grok/config.yml
       - /var/log/:/grok/log/
     networks:
       - prometheus_network
+    hostname: grok_exporter_email_extr
 
   grok_exporter_afp:
     container_name: grok_exporter_afp
     image: grok_exporter
     build: /data/prometheus/grok_exporter/
-    ports:
-      - "9145:9144"
+    #ports:
+    #  - "9145:9144"
     volumes:
       - /data/prometheus/grok_exporter/config_afp.yml:/grok/config.yml
       - /var/log/:/grok/log/
     networks:
       - prometheus_network
+    hostname: grok_exporter_afp
 
   grok_exporter_afp_reminders:
     container_name: grok_exporter_afp_reminders
     image: grok_exporter
     build: /data/prometheus/grok_exporter/
-    ports:
-      - "9147:9144"
+    #ports:
+    #  - "9147:9144"
     volumes:
       - /data/prometheus/grok_exporter/config_afp_reminders.yml:/grok/config.yml
       - /var/log/:/grok/log/
     networks:
       - prometheus_network
+    hostname: grok_exporter_afp_reminders
 
   grok_exporter_afp_digests:
     container_name: grok_exporter_afp_digests
     image: grok_exporter
     build: /data/prometheus/grok_exporter/
-    ports:
-      - "9148:9144"
+    #ports:
+    #  - "9148:9144"
     volumes:
       - /data/prometheus/grok_exporter/config_afp_weekly_digests.yml:/grok/config.yml
       - /var/log/:/grok/log/
     networks:
       - prometheus_network
+    hostname: grok_exporter_afp_digests
 
   grok_exporter_vfp:
     container_name: grok_exporter_vfp
     image: grok_exporter
     build: /data/prometheus/grok_exporter/
-    ports:
-      - "9146:9144"
+    #ports:
+    #  - "9146:9144"
     volumes:
       - /data/prometheus/grok_exporter/config_vfp.yml:/grok/config.yml
       - /var/log/:/grok/log/
     networks:
       - prometheus_network
+    hostname: grok_exporter_vfp
 
   alertmanager:
     container_name: alert_manager
     image: prom/alertmanager
-    ports: 
-      - "9093:9093"
+    #ports: 
+    #  - "9093:9093"
     volumes:
       - /data/prometheus/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml
     networks:
       - prometheus_network
+    hostname: alertmanager
 
   grafana:
     container_name: grafana
     image: grafana/grafana
     volumes:
       - /data/grafana:/var/lib/grafana
+    networks:
+      - prometheus_network
     ports: 
       - "3030:3000"
 
 networks:
   prometheus_network:
     name: prometheus_network
+    driver: bridge

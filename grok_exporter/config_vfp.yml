@@ -28,4 +28,4 @@ metrics:
   labels:
     logfile: '{{base .logfile}}'
 server:
-  port: 9146
+  port: 9144

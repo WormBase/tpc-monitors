@@ -34,19 +34,19 @@ scrape_configs:
 
   - job_name: 'afp'
     static_configs:
-    - targets: ['grok_exporter_afp:9145']
+    - targets: ['grok_exporter_afp:9144']
 
   - job_name: 'vfp'
     static_configs:
-    - targets: ['grok_exporter_vfp:9146']
+    - targets: ['grok_exporter_vfp:9144']
 
   - job_name: 'afp_reminders'
     static_configs:
-    - targets: ['grok_exporter_afp_reminders:9147']
+    - targets: ['grok_exporter_afp_reminders:9144']
 
   - job_name: 'afp_digests'
     static_configs:
-    - targets: ['grok_exporter_afp_digests:9148']
+    - targets: ['grok_exporter_afp_digests:9144']
 
   - job_name: 'wormicloud'
     static_configs:
